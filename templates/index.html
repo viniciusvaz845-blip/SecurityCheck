@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+      content="SecurityCheck: ferramenta educacional para verificação de conexões TLS.">
+    <title>🛡️ SecurityCheck</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo SecurityCheck">
+            SecurityCheck
+        </h1>
+    </header>
+    <div class="layout">
+
+        <aside class="sidebar">
+            <nav>
+                <a href="#dashboard">Dashboard</a>
+                <a href="#scanner">TLS scanner</a>
+                <a href="#sobre">Sobre</a>
+            </nav>
+            <p>system ready</p>
+        </aside>
+
+        <main>
+            <section id="dashboard">
+                <div>
+                    <p class="terminal">@securitycheck:~$</p>
+                    <h2>TLS Scanner</h2>
+                    <p>Verifique o protocolo TLS de um servidor.</p>
+                </div>
+            </section>
+
+            <section id="scanner">
+                <div class="contents">
+                    <form action="/" method="POST">
+                        <label for="dominio">TARGET DOMAIN</label>
+
+                            <input
+                                type="text"
+                                id="dominio"
+                                name="dominio"
+                                placeholder="exemplo.com"
+                                required
+                            >
+
+                        <button type="submit">RUN SCAN</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="results">
+                <h2>SCAN RESULTS</h2>
+
+                {% if resultado %}
+                    <p>{{ resultado }}</p>
+                {% else %}
+                    <p>Aguardando consulta...</p>
+                {% endif %}
+            </section>
+
+            <section id="console">
+                <h2>SYSTEM CONSOLE</h2>
+                <pre>{% if resultado %}{{ resultado }}{% else %}Aguardando consulta...{% endif %}</pre>
+            </section>
+            <section id="sobre">
+                <h2>Sobre o SecurityCheck</h2>
+                <p>
+                     O SecurityCheck é uma ferramenta educacional desenvolvida
+                     em Python e Flask para verificar a versão TLS negociada
+                     em conexões HTTPS.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>SecurityCheck © 2026</p>
+        <p>Desenvolvido por Vinicius Vaz</p>
+        <p>Ferramenta educacional de análise TLS</p>
+    </footer>
+</body>
+</html>
